@@ -5,22 +5,22 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 
 import { uploadImage, logoutUser } from "../redux/actions/userAction";
+import MyButton from "../utils/MyButton";
 
-import EditDetails from './EditDetails';
+import EditDetails from "./EditDetails";
 
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import MuiLink from "@material-ui/core/Link";
 
-import locationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditButton from "@material-ui/icons/Edit";
-import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 import { connect } from "react-redux";
-import { IconButton, Tooltip } from "@material-ui/core";
 
 const styles = theme => ({
   paper: {
@@ -85,7 +85,7 @@ class Profile extends Component {
 
   handleLogout = () => {
     this.props.logoutUser();
-  }
+  };
 
   render() {
     const {
@@ -102,20 +102,20 @@ class Profile extends Component {
         <Paper className={classes.paper}>
           <div className={classes.profile}>
             <div className="image-wrapper">
-              <img
-                className="profile-image"
-                src={imageUrl}
-                alt=""
-              />
+              <img className="profile-image" src={imageUrl} alt="" />
               <input
                 type="file"
                 id="imageInput"
                 hidden="hidden"
                 onChange={this.handleImageChange}
               />
-              <IconButton onClick={this.handleEditPicture} className="button">
+              <MyButton
+                tip="Edit profile image"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
                 <EditButton color="primary" />
-              </IconButton>
+              </MyButton>
             </div>
             <div className="profile-details">
               <MuiLink
@@ -131,7 +131,7 @@ class Profile extends Component {
               <hr />
               {location && (
                 <Fragment>
-                  <locationOn color="primary" /> <span>{location}</span>
+                  <LocationOnIcon color="primary" /> <span>{location}</span>
                   <hr />
                 </Fragment>
               )}
@@ -148,11 +148,9 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
-            <Tooltip title="logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                  <KeyboardReturn color="primary"></KeyboardReturn>
-              </IconButton>
-            </Tooltip>
+            <MyButton tip="logout" onClick={this.handleLogout}>
+              <KeyboardReturn color="primary"></KeyboardReturn>
+            </MyButton>
             <EditDetails />
           </div>
         </Paper>
