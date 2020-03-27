@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 import { connect } from "react-redux";
-import { editUserDetails } from "../redux/actions/userAction";
-import MyButton from "../utils/MyButton";
+import { editUserDetails } from "../../redux/actions/userAction";
+import MyButton from "../../utils/MyButton";
 
 import EditIcon from "@material-ui/icons/Edit";
 import Button from "@material-ui/core/Button";
