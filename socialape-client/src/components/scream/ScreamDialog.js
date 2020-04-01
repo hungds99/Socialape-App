@@ -18,6 +18,8 @@ import ChatIcon from "@material-ui/icons/Chat";
 import { connect } from "react-redux";
 import { getScream } from "../../redux/actions/dataAction";
 import LikeButton from "./LikeButton";
+import Comment from "./Comment";
+import CommentForm from "./CommentForm";
 
 const styles = theme => ({
   ...theme.spreadThis,
@@ -47,15 +49,28 @@ const styles = theme => ({
 
 export class ScreamDialog extends Component {
   state = {
-    open: false
+    open: false,
+    oldPath: "",
+    newPath: ""
   };
 
+  componentDidMount() {
+    if (this.props.openDialog) {
+      this.handleOpen();
+    }
+  }
+
   handleOpen = () => {
-    this.setState({ open: true });
+    let oldPath = window.location.pathname;
+    const { userHandle, screamId } = this.props;
+    const newPath = `/users/${userHandle}/scream/${screamId}`;
+    window.history.pushState(null, null, newPath);
+    this.setState({ open: true, oldPath: oldPath });
     this.props.getScream(this.props.screamId);
   };
 
   handleClose = () => {
+    window.history.pushState(null, null, this.state.oldPath);
     this.setState({ open: false });
   };
 
@@ -69,7 +84,8 @@ export class ScreamDialog extends Component {
         likeCount,
         commentCount,
         userImage,
-        userHandle
+        userHandle,
+        comments
       },
       UI: { loading }
     } = this.props;
@@ -105,6 +121,9 @@ export class ScreamDialog extends Component {
           </MyButton>
           <span>{commentCount}</span>
         </Grid>
+        <hr className={classes.visibleSeparator} />
+        <CommentForm screamId={screamId} />
+        <Comment comments={comments} />
       </Grid>
     );
     return (

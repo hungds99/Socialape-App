@@ -7,13 +7,14 @@ import AuthRoute from "./utils/AuthRoute";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import { SET_AUTHENTICATED }from './redux/types';
-import {logoutUser, getUserData} from './redux/actions/userAction';
+import { SET_AUTHENTICATED } from "./redux/types";
+import { logoutUser, getUserData } from "./redux/actions/userAction";
 
 // Pages
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
+import User from "./pages/user";
 
 // Components
 import Navbar from "./components/layout/Navbar";
@@ -32,8 +33,8 @@ if (token) {
   } else {
     store.dispatch({
       type: SET_AUTHENTICATED
-    })
-    axios.defaults.headers.common['Authorization'] = token;
+    });
+    axios.defaults.headers.common["Authorization"] = token;
     store.dispatch(getUserData());
   }
 }
@@ -48,13 +49,13 @@ function App() {
             <div className="container">
               <Switch>
                 <Route path="/" component={Home} exact />
-                <AuthRoute
-                  path="/login"
-                  component={Login}
-                />
-                <AuthRoute
-                  path="/signup"
-                  component={Signup}
+                <AuthRoute path="/login" component={Login} />
+                <AuthRoute path="/signup" component={Signup} />
+                <Route exact path="/user/:handle" component={User} />
+                <Route
+                  exact
+                  path="/user/:handle/scream/:screamId"
+                  component={User}
                 />
               </Switch>
             </div>
