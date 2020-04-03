@@ -37,8 +37,8 @@ const styles = theme => ({
       }
     },
     "& .profile-image": {
-      width: 200,
-      height: 200,
+      width: 180,
+      height: 180,
       objectFit: "cover",
       maxWidth: "100%",
       borderRadius: "50%"
@@ -131,22 +131,29 @@ class Profile extends Component {
               <hr />
               {location && (
                 <Fragment>
-                  <LocationOnIcon color="primary" /> <span>{location}</span>
+                  <LocationOnIcon color="primary" />{" "}
+                  <Typography variant="body1" component="span">
+                    {location}
+                  </Typography>
                   <hr />
                 </Fragment>
               )}
               {website && (
                 <Fragment>
                   <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="noopener noreferrer">
-                    {" "}
-                    {website}
-                  </a>
+                  <Typography variant="body1" component="span">
+                    <a href={website} target="_blank" rel="noopener noreferrer">
+                      {" "}
+                      {website}
+                    </a>
+                  </Typography>
                   <hr />
                 </Fragment>
               )}
               <CalendarToday color="primary" />{" "}
-              <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
+              <Typography variant="body1" component="span">
+                Joined {dayjs(createdAt).format("MMM YYYY")}
+              </Typography>
             </div>
             <MyButton tip="logout" onClick={this.handleLogout}>
               <KeyboardReturn color="primary"></KeyboardReturn>

@@ -13,9 +13,38 @@ export default {
       contrastText: "#fff"
     }
   },
+  typography: {
+    useNextVariants: true,
+    fontSize: 12,
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(',')
+  },
   spreadThis: {
     typography: {
-      useNextVariants: true
+      useNextVariants: true,
+      fontSize: 10,
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(',')
     },
     form: {
       textAlign: "center"

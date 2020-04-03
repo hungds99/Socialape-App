@@ -29,11 +29,11 @@ export class home extends Component {
 
     return (
       <Grid container spacing={6}>
+        <Grid item sm={3} xs={12}>
+          <Profile></Profile>
+        </Grid>
         <Grid item sm={8} xs={12}>
           {recentScreamsMarkup}
-        </Grid>
-        <Grid item sm={4} xs={12}>
-          <Profile></Profile>
         </Grid>
       </Grid>
     );

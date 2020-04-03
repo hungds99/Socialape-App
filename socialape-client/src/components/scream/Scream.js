@@ -7,10 +7,14 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import MyButton from "../../utils/MyButton";
 
 import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ChatIcon from "@material-ui/icons/Chat";
+import Avatar from "@material-ui/core/Avatar";
+import IconButton from "@material-ui/core/IconButton";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import { connect } from "react-redux";
 import DeleteScream from "./DeleteScream";
@@ -19,7 +23,7 @@ import LikeButton from "./LikeButton";
 
 const styles = {
   card: {
-    display: "flex",
+    // display: "flex",
     marginBottom: 20,
     position: "relative"
   },
@@ -50,11 +54,34 @@ export class Scream extends Component {
 
     return (
       <Card className={classes.card}>
-        <CardMedia
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              <img src={scream.userImage} alt="" />
+            </Avatar>
+          }
+          action={<IconButton aria-label="settings">{deleteButton}</IconButton>}
+          title={
+            <Typography
+              variant="h5"
+              component={Link}
+              to={`/user/${scream.userHandle}`}
+              color="primary"
+            >
+              {scream.userHandle}
+            </Typography>
+          }
+          subheader={
+            <Typography variant="body2" color="textSecondary">
+              {dayjs(scream.createdAt).fromNow()}
+            </Typography>
+          }
+        />
+        {/* <CardMedia
           image={scream.userImage}
           title="Contemplative Reptile"
           className={classes.image}
-        />
+        /> */}
         <CardContent className={classes.content}>
           <Typography
             variant="h5"
@@ -68,13 +95,17 @@ export class Scream extends Component {
           <Typography variant="body2" color="textSecondary">
             {dayjs(scream.createdAt).fromNow()}
           </Typography>
-          <Typography variant="body1">{scream.body}</Typography>
+          <Typography variant="subtitle1">{scream.body}</Typography>
           <LikeButton screamId={scream.screamId} />
-          <span>{scream.likeCount} Likes</span>
+          <Typography variant="body1" component="span">
+            {scream.likeCount} Likes
+          </Typography>
           <MyButton tip="comments">
             <ChatIcon color="primary" />
           </MyButton>
-          <span>{scream.commentCount}</span>
+          <Typography variant="body1" component="span">
+            {scream.commentCount} Comments
+          </Typography>
           <ScreamDialog
             screamId={scream.screamId}
             userHandle={scream.userHandle}
