@@ -78,7 +78,7 @@ export class signup extends Component {
               error={errors.password ? true : false}
             />
             <TextField
-              type="confirmPassword"
+              type="password"
               id="confirmPassword"
               name="confirmPassword"
               label="ConfirmPassword"
