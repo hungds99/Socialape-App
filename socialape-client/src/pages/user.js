@@ -16,13 +16,14 @@ export class user extends Component {
 
   componentDidMount() {
     const handle = this.props.match.params.handle;
-    const screamId = this.props.match.params.handle;
+    const screamId = this.props.match.params.screamId;
+    console.log("Component Did Mount !");
+    
     if (screamId) {
       this.setState({
         screamIdParam: screamId
       });
     }
-    console.log(this.state.screamIdParam);
     this.props.getUserData(handle);
     axios
       .get(`/user/${handle}`)

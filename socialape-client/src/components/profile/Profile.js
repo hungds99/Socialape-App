@@ -92,9 +92,9 @@ class Profile extends Component {
       classes,
       user: {
         credentials: { handle, createdAt, imageUrl, bio, website, location },
-        authenticated
-      },
-      UI: { loading }
+        authenticated,
+        loading
+      }
     } = this.props;
 
     let profileMarkup = !loading ? (
@@ -195,8 +195,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-  user: state.user,
-  UI: state.UI
+  user: state.user
 });
 
 const mapActionsToProps = {
@@ -206,7 +205,6 @@ const mapActionsToProps = {
 
 Profile.propTypes = {
   user: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,
   uploadImage: PropTypes.func.isRequired

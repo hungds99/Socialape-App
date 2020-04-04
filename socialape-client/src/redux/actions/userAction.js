@@ -6,7 +6,8 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_UNAUTHENTICATED,
-  MARK_NOTIFICATIONS_READ
+  MARK_NOTIFICATIONS_READ,
+  LOADING_USER
 } from "../types";
 
 export const loginUser = (userData, history) => dispatch => {
@@ -56,7 +57,7 @@ export const logoutUser = () => dispatch => {
 };
 
 export const getUserData = () => dispatch => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_USER });
 
   axios
     .get("/user")
@@ -64,9 +65,6 @@ export const getUserData = () => dispatch => {
       dispatch({
         type: SET_USER,
         payload: res.data
-      });
-      dispatch({
-        type: CLEAR_ERRORS
       });
     })
     .catch(err => {
@@ -78,7 +76,6 @@ export const getUserData = () => dispatch => {
 };
 
 export const uploadImage = formData => dispatch => {
-  dispatch({ type: LOADING_UI });
   axios
     .post("/user/image", formData)
     .then(() => {
@@ -88,7 +85,6 @@ export const uploadImage = formData => dispatch => {
 };
 
 export const editUserDetails = userDetails => (dispatch) => {
-  dispatch({ type: LOADING_UI });
   axios
     .post("/user", userDetails)
     .then(() => {

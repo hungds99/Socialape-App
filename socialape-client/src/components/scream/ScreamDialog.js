@@ -24,8 +24,10 @@ import CommentForm from "./CommentForm";
 const styles = theme => ({
   ...theme.spreadThis,
   profileImage: {
-    maxWidth: 200,
-    height: 200,
+    display: "block",
+    margin: "auto",
+    width: 150,
+    height: 150,
     borderRadius: "50%",
     objectFit: "cover"
   },
@@ -63,7 +65,7 @@ export class ScreamDialog extends Component {
   handleOpen = () => {
     let oldPath = window.location.pathname;
     const { userHandle, screamId } = this.props;
-    const newPath = `/users/${userHandle}/scream/${screamId}`;
+    const newPath = `/user/${userHandle}/scream/${screamId}`;
     window.history.pushState(null, null, newPath);
     this.setState({ open: true, oldPath: oldPath });
     this.props.getScream(this.props.screamId);
@@ -92,10 +94,10 @@ export class ScreamDialog extends Component {
 
     const screamDialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
-        <CircularProgress size={200} thickness={2} />
+        <CircularProgress size={100} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={16}>
+      <Grid container spacing={1}>
         <Grid item sm={5}>
           <img src={userImage} alt="" className={classes.profileImage} />
         </Grid>
@@ -104,24 +106,27 @@ export class ScreamDialog extends Component {
             component={Link}
             color="primary"
             variant="h5"
-            to={`/users/${userHandle}`}
+            to={`/user/${userHandle}`}
           >
             @{userHandle}
           </Typography>
-          <hr className={classes.invisibleSeparator} />
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).format("h:mm a, MMM DD YYYY")}
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
           <LikeButton screamId={screamId} />
-          <span>{likeCount} Likes</span>
+          <Typography variant="body1" component="span">
+            {likeCount} Likes
+          </Typography>
           <MyButton tip="comments">
             <ChatIcon color="primary" />
           </MyButton>
-          <span>{commentCount}</span>
+          <Typography variant="body1" component="span">
+            {commentCount} Comments
+          </Typography>
         </Grid>
-        <hr className={classes.visibleSeparator} />
+        {/* <hr className={classes.visibleSeparator} /> */}
         <CommentForm screamId={screamId} />
         <Comment comments={comments} />
       </Grid>

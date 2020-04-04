@@ -40,16 +40,16 @@ export default function(state = initialState, actions) {
       );
       state.screams[index] = actions.payload;
       if (state.scream.screamId === actions.payload.screamId) {
-        state.scream = actions.payload;
+        state.scream.likeCount = actions.payload.likeCount;
       }
       return {
         ...state
       };
     case DELETE_SCREAM:
-      index = state.screams.findIndex(
+      let delIndex = state.screams.findIndex(
         scream => scream.screamId === actions.payload
       );
-      state.screams.splice(index, 1);
+      state.screams.splice(delIndex, 1);
       return {
         ...state
       };
@@ -59,6 +59,13 @@ export default function(state = initialState, actions) {
         screams: [actions.payload, ...state.screams]
       };
     case SUBMIT_COMMENT:
+      let screamIndex = state.screams.findIndex(
+        scream => scream.screamId === actions.payload.screamId
+      );
+      state.screams[screamIndex].commentCount++;
+      if (state.scream.screamId === actions.payload.screamId) {
+        state.scream.commentCount++;
+      }
       return {
         ...state,
         scream: {

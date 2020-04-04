@@ -14,7 +14,6 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import { connect } from "react-redux";
 import { postScream } from "../../redux/actions/dataAction";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = theme => ({
   ...theme.spreadThis,
@@ -43,7 +42,7 @@ class PostScream extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, body: "", errors: {} });
   };
 
   handleChange = event => {
@@ -54,16 +53,25 @@ class PostScream extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.postScream({ body: this.state.body });
-    this.handleClose();
+    if (this.state.body.trim() === "") {
+      this.setState({
+        errors: {
+          body: "Must not be empty !"
+        }
+      });
+    } else {
+      this.props.postScream({ body: this.state.body });
+      this.handleClose();
+      this.setState({
+        body: "",
+        errors: {}
+      });
+    }
   };
 
   render() {
     const { errors } = this.state;
-    const {
-      classes,
-      UI: { loading }
-    } = this.props;
+    const { classes } = this.props;
     return (
       <Fragment>
         <MyButton onClick={this.handleOpen} tip="Post a scream">
@@ -102,15 +110,8 @@ class PostScream extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.submitButton}
-                disable={loading}
               >
                 Post
-                {loading && (
-                  <CircularProgress
-                    size={30}
-                    className={classes.progressSpinner}
-                  />
-                )}
               </Button>
             </form>
           </DialogContent>
@@ -122,14 +123,7 @@ class PostScream extends Component {
 
 PostScream.propTypes = {
   postScream: PropTypes.func.isRequired,
-  UI: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  UI: state.UI
-});
-
-export default connect(mapStateToProps, { postScream })(
-  withStyles(styles)(PostScream)
-);
+export default connect(null, { postScream })(withStyles(styles)(PostScream));

@@ -74,16 +74,12 @@ export const deleteScream = screamId => dispatch => {
 };
 
 export const postScream = newScream => dispatch => {
-  dispatch({ type: LOADING_UI });
   axios
     .post("/scream", newScream)
     .then(res => {
       dispatch({
         type: POST_SCREAM,
         payload: res.data
-      });
-      dispatch({
-        type: CLEAR_ERRORS
       });
     })
     .catch(err => {
@@ -124,7 +120,7 @@ export const submitComment = (screamId, commentData) => dispatch => {
 };
 
 export const getUserData = (userHandle) => dispatch => {
-  dispatch({ type: LOADING_UI });
+  dispatch({ type: LOADING_DATA });
   axios
     .get(`/user/${userHandle}`)
     .then(res => {
@@ -132,9 +128,6 @@ export const getUserData = (userHandle) => dispatch => {
         type: SET_SCREAMS,
         payload: res.data.screams
       });
-      dispatch({
-        type: STOP_LOADING_UI
-      })
     })
     .catch(() => {
       dispatch({

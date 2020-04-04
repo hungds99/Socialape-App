@@ -4,18 +4,25 @@ import {
   SET_UNAUTHENTICATED,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
-  MARK_NOTIFICATIONS_READ
+  MARK_NOTIFICATIONS_READ,
+  LOADING_USER
 } from "../types";
 
 const initialState = {
   authenticated: false,
   credentials: {},
   likes: [],
-  notifications: []
+  notifications: [],
+  loading: false,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case LOADING_USER: 
+      return {
+        ...state,
+        loading: true
+      }
     case SET_AUTHENTICATED:
       return {
         ...state,
@@ -26,7 +33,8 @@ export default function(state = initialState, action) {
     case SET_USER:
       return {
         authenticated: true,
-        ...action.payload
+        ...action.payload,
+        loading: false
       };
     case LIKE_SCREAM:
       return {

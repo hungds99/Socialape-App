@@ -8,13 +8,10 @@ import MyButton from "../../utils/MyButton";
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import ChatIcon from "@material-ui/icons/Chat";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 
 import { connect } from "react-redux";
 import DeleteScream from "./DeleteScream";
@@ -23,15 +20,18 @@ import LikeButton from "./LikeButton";
 
 const styles = {
   card: {
-    // display: "flex",
     marginBottom: 20,
     position: "relative"
   },
-  image: {
-    minWidth: 200
-  },
   content: {
-    padding: 25
+    padding: "0 50px 0 70px"
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
   }
 };
 
@@ -56,11 +56,11 @@ export class Scream extends Component {
       <Card className={classes.card}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              <img src={scream.userImage} alt="" />
+            <Avatar aria-label="recipe">
+              <img src={scream.userImage} alt="" className={classes.image}/>
             </Avatar>
           }
-          action={<IconButton aria-label="settings">{deleteButton}</IconButton>}
+          action={deleteButton}
           title={
             <Typography
               variant="h5"
@@ -77,24 +77,7 @@ export class Scream extends Component {
             </Typography>
           }
         />
-        {/* <CardMedia
-          image={scream.userImage}
-          title="Contemplative Reptile"
-          className={classes.image}
-        /> */}
         <CardContent className={classes.content}>
-          <Typography
-            variant="h5"
-            component={Link}
-            to={`/user/${scream.userHandle}`}
-            color="primary"
-          >
-            {scream.userHandle}
-          </Typography>
-          {deleteButton}
-          <Typography variant="body2" color="textSecondary">
-            {dayjs(scream.createdAt).fromNow()}
-          </Typography>
           <Typography variant="subtitle1">{scream.body}</Typography>
           <LikeButton screamId={scream.screamId} />
           <Typography variant="body1" component="span">
