@@ -1,26 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import themeFile from "./utils/themeFile";
+import axios from "axios";
 import jwtDecode from "jwt-decode";
-import AuthRoute from "./utils/AuthRoute";
-
+import React from "react";
 import { Provider } from "react-redux";
-import store from "./redux/store";
-import { SET_AUTHENTICATED } from "./redux/types";
-import { logoutUser, getUserData } from "./redux/actions/userAction";
-
-// Pages
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import AuthRoute from "./components/common/AuthRoute";
+import Navbar from "./components/layout/Navbar";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import User from "./pages/user";
-
-// Components
-import Navbar from "./components/layout/Navbar";
-
-import "./App.css";
-import axios from "axios";
+import { getUserData, logoutUser } from "./redux/actions/userAction";
+import store from "./redux/store";
+import { SET_AUTHENTICATED } from "./redux/types";
+import themeFile from "./utils/themeFile";
 
 const theme = createMuiTheme(themeFile);
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import PropTypes from "prop-types";
 import relativeTime from "dayjs/plugin/relativeTime";
-import MyButton from "../../utils/MyButton";
+
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -16,7 +16,8 @@ import Avatar from "@material-ui/core/Avatar";
 import { connect } from "react-redux";
 import DeleteScream from "./DeleteScream";
 import ScreamDialog from "./ScreamDialog";
-import LikeButton from "./LikeButton";
+import LikeButton from "../common/LikeButton";
+import MyButton from "../common/MyButton";
 
 const styles = {
   card: {

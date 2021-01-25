@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Button from "@material-ui/core/Button";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Grid from "@material-ui/core/Grid";
+import withStyles from "@material-ui/core/styles/withStyles";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { RouteConfig } from '../configs';
+import Localization from '../localization';
 import { signupUser } from "../redux/actions/userAction";
 
 const styles = theme => ({ ...theme.spreadThis });
@@ -52,57 +52,53 @@ export class signup extends Component {
       <Grid container className={classes.form}>
         <Grid item sm></Grid>
         <Grid item sm>
-          <p>Yooo !</p>
-          <Typography variant="h4">Signup</Typography>
+          <Typography component="p">{Localization.common.welcome}</Typography>
+          <Typography variant="h4">{Localization.common.register}</Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField
               type="email"
-              id="email"
               name="email"
-              label="Email"
+              label={Localization.common.email}
               className={classes.textField}
               value={this.state.email}
               onChange={this.handleChange}
-              helperText={errors.email}
+              helperText={errors.email && Localization.valid.email}
               error={errors.email ? true : false}
             />
             <TextField
               type="password"
-              id="password"
               name="password"
-              label="Password"
+              label={Localization.common.password}
               className={classes.textField}
               value={this.state.password}
               onChange={this.handleChange}
-              helperText={errors.password}
+              helperText={errors.password && Localization.valid.password}
               error={errors.password ? true : false}
             />
             <TextField
               type="password"
-              id="confirmPassword"
               name="confirmPassword"
-              label="ConfirmPassword"
+              label={Localization.common.confirmPassword}
               className={classes.textField}
               value={this.state.confirmPassword}
               onChange={this.handleChange}
-              helperText={errors.confirmPassword}
+              helperText={errors.confirmPassword && Localization.valid.confirmPassword}
               error={errors.confirmPassword ? true : false}
             />
             <TextField
               type="handle"
-              id="handle"
               name="handle"
-              label="Handle"
+              label={Localization.common.userName}
               className={classes.textField}
               value={this.state.handle}
               onChange={this.handleChange}
-              helperText={errors.handle}
+              helperText={errors.handle && Localization.valid.userName}
               error={errors.handle ? true : false}
             />
 
             {errors.general && (
               <Typography variant="body2" className={classes.textError}>
-                {errors.general}
+                {errors.general  && Localization.valid.infor}
               </Typography>
             )}
             <Button
@@ -112,11 +108,12 @@ export class signup extends Component {
               className={classes.button}
               disabled={loading}
             >
-              {loading ? <CircularProgress size="1.5rem" /> : "Signup"}
+              {loading ? <CircularProgress size="1.5rem" /> : Localization.common.register}
             </Button>
             <br />
+            <br />
             <small>
-              do have an account login <Link to="/login">here</Link>
+              {Localization.message.haveAccount} <Link to={RouteConfig.login}>{Localization.common.login}</Link>
             </small>
           </form>
         </Grid>
