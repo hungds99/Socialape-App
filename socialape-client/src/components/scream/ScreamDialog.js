@@ -12,14 +12,12 @@ import PropTypes from "prop-types";
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Localization from "../../localization";
 import { getScream } from "../../redux/actions/dataAction";
 import Comment from "../comment/Comment";
 import CommentForm from "../comment/CommentForm";
 import LikeButton from "../common/LikeButton";
 import MyButton from "../common/MyButton";
-
-
-
 
 const styles = (theme) => ({
     ...theme.spreadThis,
@@ -121,13 +119,13 @@ export class ScreamDialog extends Component {
                     <Typography variant="body1">{body}</Typography>
                     <LikeButton screamId={screamId} />
                     <Typography variant="body1" component="span">
-                        {likeCount} Likes
+                        {likeCount} {Localization.common.like}
                     </Typography>
                     <MyButton tip="comments">
                         <ChatIcon color="primary" />
                     </MyButton>
                     <Typography variant="body1" component="span">
-                        {commentCount} Comments
+                        {commentCount} {Localization.common.comment}
                     </Typography>
                 </Grid>
                 {/* <hr className={classes.visibleSeparator} /> */}
@@ -139,7 +137,7 @@ export class ScreamDialog extends Component {
             <Fragment>
                 <MyButton
                     onClick={this.handleOpen}
-                    tip="Expand scream"
+                    tip={Localization.common.expandPost}
                     tipClassName={classes.expandButton}
                 >
                     <UnfoldMore color="primary" />
@@ -151,7 +149,7 @@ export class ScreamDialog extends Component {
                     maxWidth="sm"
                 >
                     <MyButton
-                        tip="close"
+                        tip={Localization.common.close}
                         onClick={this.handleClose}
                         btnClassName={classes.closeButton}
                     >

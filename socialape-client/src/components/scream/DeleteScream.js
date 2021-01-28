@@ -1,17 +1,14 @@
-import React, { Component, Fragment } from "react";
-import withStyles from "@material-ui/core/styles/withStyles";
-import PropTypes from "prop-types";
-
-import { deleteScream } from "../../redux/actions/dataAction";
-
+import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
-import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
-
+import PropTypes from "prop-types";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import Localization from "../../localization";
+import { deleteScream } from "../../redux/actions/dataAction";
 import MyButton from "../common/MyButton";
 
 const styles = {
@@ -47,7 +44,7 @@ class DeleteScream extends Component {
     return (
       <Fragment>
         <MyButton
-          tip="Delete scream"
+          tip={Localization.common.deletePost}
           onClick={this.handleOpen}
           btnClassName={classes.deleteButton}
         >
@@ -60,14 +57,14 @@ class DeleteScream extends Component {
           maxWidth="sm"
         >
           <DialogTitle>
-            Are you sure you want to delete this scream ?
+          {Localization.message.confirmDeletePost}
           </DialogTitle>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-              Cancel
+              {Localization.common.close}
             </Button>
             <Button onClick={this.deleteScream} color="secondary">
-              Save
+              {Localization.common.delete}
             </Button>
           </DialogActions>
         </Dialog>

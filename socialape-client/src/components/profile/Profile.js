@@ -1,3 +1,4 @@
+import { LinearProgress } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
@@ -60,10 +61,10 @@ const styles = (theme) => ({
         },
     },
     buttons: {
-		display: "flex",
-		justifyContent: "center",
-		gap: "5px",
-		marginTop: "10px",
+        display: "flex",
+        justifyContent: "center",
+        gap: "5px",
+        marginTop: "10px",
         textAlign: "center",
         "$ a": {
             margin: "20px 10px",
@@ -132,7 +133,10 @@ class Profile extends Component {
                         <div className="profile-details">
                             <MuiLink
                                 component={Link}
-                                to={RouteConfig.user.getHandle.replace("{handle}", handle)}
+                                to={RouteConfig.user.getHandle.replace(
+                                    "{handle}",
+                                    handle
+                                )}
                                 color="primary"
                                 variant="h5"
                             >
@@ -176,10 +180,14 @@ class Profile extends Component {
                             )}
                             <CalendarToday color="primary" />{" "}
                             <Typography variant="body1" component="span">
-                                {Localization.common.joined} {dayjs(createdAt).format("MMM YYYY")}
+                                {Localization.common.joined} :{" "}
+                                {dayjs(createdAt).format("MMM YYYY")}
                             </Typography>
                         </div>
-                        <MyButton tip={Localization.common.logout} onClick={this.handleLogout}>
+                        <MyButton
+                            tip={Localization.common.logout}
+                            onClick={this.handleLogout}
+                        >
                             <KeyboardReturn color="primary"></KeyboardReturn>
                         </MyButton>
                         <EditDetails />
@@ -195,9 +203,9 @@ class Profile extends Component {
                             variant="contained"
                             color="primary"
                             component={Link}
-							to={RouteConfig.login}
-							size="small"
-							disableElevation
+                            to={RouteConfig.login}
+                            size="small"
+                            disableElevation
                         >
                             {Localization.common.login}
                         </Button>
@@ -205,17 +213,20 @@ class Profile extends Component {
                             variant="contained"
                             color="secondary"
                             component={Link}
-							to={RouteConfig.signup}
-							size="small"
-							disableElevation
+                            to={RouteConfig.signup}
+                            size="small"
+                            disableElevation
                         >
-                             {Localization.common.register }
+                            {Localization.common.register}
                         </Button>
                     </div>
                 </Paper>
             )
         ) : (
-            <p>{Localization.common.loading}</p>
+            <>
+                <p>{Localization.common.loading}</p>
+                <LinearProgress />
+            </>
         );
 
         return profileMarkup;

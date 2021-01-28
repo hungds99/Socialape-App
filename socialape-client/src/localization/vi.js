@@ -1,5 +1,27 @@
 export const vi = Object.freeze({
     common: {
+        yourScream: "Bài đăng của bạn",
+        notifi: "Thông báo",
+        noNotifi: "Không có thông báo nào",
+        noPost: "Không có bài đăng nào",
+        commentPost: "Bình luận bài đăng",
+        expandPost: "Hiển thị thêm",
+        unlike: "Bỏ thích",
+        like: "Thích",
+        comment: "Bình luận",
+        mindPost: "Bạn đang nghĩ gì ?",
+        post: "Bài đăng",
+        postNew: "Đăng bài đăng mới",
+        createPost: "Đăng bài",
+        delete: "Xóa",
+        deletePost: "Xoá bài đăng",
+        save: "Lưu",
+        close: "Đóng",
+        location: "Nơi sinh sống",
+        website: "Trang website",
+        intro: "Thông tin về bạn",
+        edit: "Chỉnh sửa",
+        editInfo: "Chỉnh sửa thông tin",
         loading: "Đang tải...",
         joined: "Đã tham gia",
         editImage: "Chỉnh sửa ảnh",
@@ -12,19 +34,20 @@ export const vi = Object.freeze({
         email: "Tài khoản email",
         userName: "Tên người dùng",
         password: "Mật khẩu",
-        confirmPassword: "Xác thực mật khẩu"
+        confirmPassword: "Xác thực mật khẩu",
     },
     message: {
+        confirmDeletePost: "Bạn có muốn xóa bài đăng không ?",
         havenotAccount: "Bạn không có tài khoản",
         haveAccount: "Bạn đã có tài khoản",
-        
     },
     valid: {
+        noEmpty: "Không được để trống",
         infor: "Thông tin chưa chính xác",
         email: "Tài khoản email không đúng",
         password: "Mật khẩu không đúng",
         confirmPassword: "Mật khẩu không khớp",
         userName: "Tên người dùng đã tồn tại",
-        noProfile: "Không tồn tại thông tin, Vui lòng đăng nhập"
-    }
-})
+        noProfile: "Không tồn tại thông tin, Vui lòng đăng nhập",
+    },
+});

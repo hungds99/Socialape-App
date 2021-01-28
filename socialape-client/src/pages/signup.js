@@ -107,6 +107,7 @@ export class signup extends Component {
               color="primary"
               className={classes.button}
               disabled={loading}
+              disableElevation
             >
               {loading ? <CircularProgress size="1.5rem" /> : Localization.common.register}
             </Button>

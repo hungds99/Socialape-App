@@ -8,9 +8,9 @@ import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { loginUser } from "../redux/actions/userAction";
-import Localization from '../localization';
 import { RouteConfig } from "../configs";
+import Localization from '../localization';
+import { loginUser } from "../redux/actions/userAction";
 
 const styles = (theme) => ({ ...theme.spreadThis });
 
@@ -49,8 +49,12 @@ export class login extends Component {
             <Grid container className={classes.form}>
                 <Grid item sm></Grid>
                 <Grid item sm>
-				<Typography component="p">{Localization.common.welcome}</Typography>
-                    <Typography variant="h4">{Localization.common.login}</Typography>
+                    <Typography component="p">
+                        {Localization.common.welcome}
+                    </Typography>
+                    <Typography variant="h4">
+                        {Localization.common.login}
+                    </Typography>
                     <form noValidate onSubmit={this.handleSubmit}>
                         <TextField
                             type="email"
@@ -59,7 +63,9 @@ export class login extends Component {
                             className={classes.textField}
                             value={this.state.email}
                             onChange={this.handleChange}
-                            helperText={errors.email && Localization.valid.email}
+                            helperText={
+                                errors.email && Localization.valid.email
+                            }
                             error={errors.email ? true : false}
                         />
                         <TextField
@@ -69,7 +75,9 @@ export class login extends Component {
                             className={classes.textField}
                             value={this.state.password}
                             onChange={this.handleChange}
-                            helperText={errors.password && Localization.valid.password}
+                            helperText={
+                                errors.password && Localization.valid.password
+                            }
                             error={errors.password ? true : false}
                         />
                         {errors.general && (
@@ -85,8 +93,8 @@ export class login extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.button}
-							disabled={loading}
-							disableElevation
+                            disabled={loading}
+                            disableElevation
                         >
                             {loading ? (
                                 <CircularProgress size="1.5rem" />
@@ -95,10 +103,12 @@ export class login extends Component {
                             )}
                         </Button>
                         <br />
-						<br />
+                        <br />
                         <small>
                             {Localization.message.havenotAccount}{" "}
-                            <Link to={RouteConfig.signup}>{Localization.common.register}</Link>
+                            <Link to={RouteConfig.signup}>
+                                {Localization.common.register}
+                            </Link>
                         </small>
                     </form>
                 </Grid>

@@ -20,44 +20,48 @@ const theme = createMuiTheme(themeFile);
 
 const token = localStorage.FBIdToken;
 if (token) {
-  const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    window.location.href = "/login";
-    store.dispatch(logoutUser());
-  } else {
-    store.dispatch({
-      type: SET_AUTHENTICATED
-    });
-    axios.defaults.headers.common["Authorization"] = token;
-    store.dispatch(getUserData());
-  }
+    const decodedToken = jwtDecode(token);
+    if (decodedToken.exp * 1000 < Date.now()) {
+        window.location.href = "/login";
+        store.dispatch(logoutUser());
+    } else {
+        store.dispatch({
+            type: SET_AUTHENTICATED,
+        });
+        axios.defaults.headers.common["Authorization"] = token;
+        store.dispatch(getUserData());
+    }
 }
 
 function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <div className="App">
-          <Router>
-            <Navbar />
-            <div className="container">
-              <Switch>
-                <Route path="/" component={Home} exact />
-                <AuthRoute path="/login" component={Login} />
-                <AuthRoute path="/signup" component={Signup} />
-                <Route exact path="/user/:handle" component={User} />
-                <Route
-                  exact
-                  path="/user/:handle/scream/:screamId"
-                  component={User}
-                />
-              </Switch>
-            </div>
-          </Router>
-        </div>
-      </Provider>
-    </ThemeProvider>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+            <Provider store={store}>
+                <div className="App">
+                    <Router>
+                        <Navbar />
+                        <div className="container">
+                            <Switch>
+                                <Route path="/" component={Home} exact />
+                                <AuthRoute path="/login" component={Login} />
+                                <AuthRoute path="/signup" component={Signup} />
+                                <Route
+                                    exact
+                                    path="/user/:handle"
+                                    component={User}
+                                />
+                                <Route
+                                    exact
+                                    path="/user/:handle/scream/:screamId"
+                                    component={User}
+                                />
+                            </Switch>
+                        </div>
+                    </Router>
+                </div>
+            </Provider>
+        </ThemeProvider>
+    );
 }
 
 export default App;

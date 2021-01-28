@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 import PropTypes from "prop-types";
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { RouteConfig } from "../../configs";
@@ -63,14 +63,14 @@ class Navbar extends Component {
                             <div className={classes.sectionDesktop}>
                                 <PostScream />
                                 <Link to={RouteConfig.home}>
-                                    <MyButton tip="Home">
+                                    <MyButton tip={Localization.common.home}>
                                         <HomeIcon color="primary" />
                                     </MyButton>
                                 </Link>
                                 <Notifications />
                             </div>
                         ) : (
-                            <Fragment>
+                            <>
                                 <Button
                                     color="inherit"
                                     component={Link}
@@ -92,7 +92,7 @@ class Navbar extends Component {
                                 >
                                     {Localization.common.register}
                                 </Button>
-                            </Fragment>
+                            </>
                         )}
                     </Toolbar>
                 </AppBar>

@@ -9,6 +9,7 @@ import Profile from "../components/profile/Profile";
 
 import { connect } from "react-redux";
 import { getScreams } from "../redux/actions/dataAction";
+import Localization from "../localization";
 
 export class home extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ export class home extends Component {
       screams.map(scream => <Scream key={scream.screamId} scream={scream} />)
     ) : (
       <div>
-        <p>loading..</p>
+        <p>{Localization.common.loading}</p>
         <LinearProgress></LinearProgress>
       </div>
     );

@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
-
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import Localization from "../../localization";
 import { submitComment } from "../../redux/actions/dataAction";
 
 const styles = theme => ({
@@ -39,7 +38,7 @@ export class CommentForm extends Component {
           <TextField
             name="body"
             type="text"
-            label="Comment on scream"
+            label={Localization.common.commentPost}
             error={errors.comment ? true : false}
             helperText={errors.comment}
             value={this.state.body}
@@ -51,9 +50,10 @@ export class CommentForm extends Component {
             type="submit"
             variant="contained"
             color="primary"
-            className={classes.submitButton}
+			className={classes.submitButton}
+			disableElevation
           >
-            Comment
+            {Localization.common.comment}
           </Button>
         </form>
       </Grid>

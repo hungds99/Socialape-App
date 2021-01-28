@@ -1,13 +1,13 @@
+import { LinearProgress } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import axios from "axios";
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import axios from "axios";
-import Grid from "@material-ui/core/Grid";
-import Scream from "../components/scream/Scream";
-
-import { getUserData } from "../redux/actions/dataAction";
 import StaticProfile from "../components/profile/StaticProfile";
-
+import Scream from "../components/scream/Scream";
+import Localization from "../localization";
+import { getUserData } from "../redux/actions/dataAction";
 export class user extends Component {
     state = {
         profile: null,
@@ -40,9 +40,12 @@ export class user extends Component {
         const { profile, screamIdParam } = this.state;
 
         let screamsMarkup = loading ? (
-            <p>loading...</p>
+            <>
+                <p>{Localization.common.loading}</p>
+                <LinearProgress />
+            </>
         ) : screams === null ? (
-            <p>No screams</p>
+            <p>{Localization.common.noPost}</p>
         ) : !screamIdParam ? (
             screams.map((scream) => (
                 <Scream key={scream.screamId} scream={scream} />
@@ -69,10 +72,12 @@ export class user extends Component {
                 </Grid>
                 <Grid item sm={4} xs={12}>
                     {this.state.profile === null ? (
-                        <p>loading profile ...</p>
+                        <>
+                            <p>{Localization.common.loading}</p>
+                            <LinearProgress />
+                        </>
                     ) : (
                         <StaticProfile profile={profile} />
-                        // <p>loading profile 1...</p>
                     )}
                 </Grid>
             </Grid>
