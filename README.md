@@ -24,12 +24,12 @@ Chạy theo các bước:
 - Tải source về local: `git clone https://github.com/hungds99/Socialape-App.git`
 - Di chuyển đến dự án: `cd Socialape-App`
 * Giao diện:
-  - `cd socialape-client`
-  - `npm install`
-  - `npm start`
+    - `cd socialape-client`
+    - `npm install`
+    - `npm start`
  * Firebase API:
-  - `cd socialape-functions/functions`
-  - `npm i`
-  - `firebase serve`
+    - `cd socialape-functions/functions`
+    - `npm i`
+    - `firebase serve`
  * Chạy ứng dụng ở chế độ phát triển.\
 Mở [http://localhost:3000](http://localhost:3000) để xem nó trên trình duyệt.
