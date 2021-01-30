@@ -31,5 +31,5 @@ Chạy theo các bước:
   - `cd socialape-functions/functions`
   - `npm i`
   - `firebase serve`
-Chạy ứng dụng ở chế độ phát triển.\
+ * Chạy ứng dụng ở chế độ phát triển.\
 Mở [http://localhost:3000](http://localhost:3000) để xem nó trên trình duyệt.
